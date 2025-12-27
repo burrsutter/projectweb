@@ -1,0 +1,72 @@
+/* Custom styles for Pokemon Favorites */
+
+/* Star rating hover effect */
+.star-rating .star {
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+}
+
+.star-rating .star:hover {
+    transform: scale(1.2);
+}
+
+/* Pokemon card hover effect */
+.pokemon-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.pokemon-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Modal animation */
+#modal {
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Comment styling */
+.comment {
+    border-left: 3px solid #ef4444;
+}
+
+/* Loading spinner */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Scrollbar styling for modal */
+#modal > div {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db #f3f4f6;
+}
+
+#modal > div::-webkit-scrollbar {
+    width: 8px;
+}
+
+#modal > div::-webkit-scrollbar-track {
+    background: #f3f4f6;
+}
+
+#modal > div::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .pokemon-card img {
+        width: 96px;
+        height: 96px;
+    }
+
+    #modal-image {
+        width: 128px;
+        height: 128px;
+    }
+}

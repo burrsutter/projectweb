@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Favorites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-red-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <h1 class="text-3xl font-bold text-center">Pokemon Favorites</h1>
+            <p class="text-center text-red-100 mt-2">Rate and comment on your favorite Pokemon!</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Loading Spinner -->
+        <div id="loading" class="flex justify-center items-center py-12">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"></div>
+            <span class="ml-4 text-gray-600">Loading Pokemon...</span>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <span id="error-message"></span>
+        </div>
+
+        <!-- Pokemon Grid -->
+        <div id="pokemon-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Pokemon cards will be inserted here -->
+        </div>
+
+        <!-- Load More Button -->
+        <div id="load-more-container" class="hidden text-center mt-8">
+            <button id="load-more" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors">
+                Load More Pokemon
+            </button>
+        </div>
+    </main>
+
+    <!-- Pokemon Detail Modal -->
+    <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center p-4 border-b bg-gray-50 rounded-t-lg">
+                <h2 id="modal-title" class="text-2xl font-bold capitalize text-gray-800"></h2>
+                <button id="modal-close" class="text-gray-500 hover:text-gray-700 text-2xl font-bold">&times;</button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6">
+                <!-- Pokemon Image -->
+                <div class="text-center mb-6">
+                    <img id="modal-image" src="" alt="" class="w-48 h-48 mx-auto">
+                </div>
+
+                <!-- Pokemon Types -->
+                <div id="modal-types" class="flex justify-center gap-2 mb-6">
+                    <!-- Type badges will be inserted here -->
+                </div>
+
+                <!-- Star Rating -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-2 text-gray-700">Your Rating</h3>
+                    <div id="modal-rating" class="star-rating flex justify-center gap-1" data-pokemon-id="">
+                        <!-- Stars will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="border-t pt-6">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Comments</h3>
+
+                    <!-- Comment Form -->
+                    <form id="comment-form" class="mb-6">
+                        <input type="hidden" id="comment-pokemon-id" value="">
+                        <input type="hidden" id="comment-pokemon-name" value="">
+
+                        <div class="mb-3">
+                            <input type="text" id="comment-author" placeholder="Your name (optional)"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                        </div>
+
+                        <div class="mb-3">
+                            <textarea id="comment-text" placeholder="Write a comment..." required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 resize-none"
+                                rows="3"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+                            Add Comment
+                        </button>
+                    </form>
+
+                    <!-- Comments List -->
+                    <div id="comments-list" class="space-y-4">
+                        <!-- Comments will be inserted here -->
+                    </div>
+
+                    <div id="no-comments" class="hidden text-center text-gray-500 py-4">
+                        No comments yet. Be the first to comment!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/pokemon.js"></script>
+    <script src="/js/ratings.js"></script>
+    <script src="/js/comments.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
