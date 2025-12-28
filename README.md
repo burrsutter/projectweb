@@ -5,7 +5,7 @@ A web application to browse, rate, and comment on your favorite Pokemon. Data is
 ## Tech Stack
 
 - **Backend:** Node.js + Express
-- **Database:** SQLite (better-sqlite3)
+- **Database:** PostgreSQL (pg)
 - **Frontend:** HTML, CSS, JavaScript, Tailwind CSS (CDN)
 - **Data Source:** PokeAPI
 
@@ -21,7 +21,12 @@ A web application to browse, rate, and comment on your favorite Pokemon. Data is
    npm run dev
    ```
 
-3. Open http://localhost:3000 in your browser
+3. Set the database connection string:
+   ```bash
+   export DATABASE_URL="postgres://user:password@localhost:5432/pokemon_favorites"
+   ```
+
+4. Open http://localhost:3000 in your browser
 
 For production mode without auto-reload:
 ```bash
@@ -38,15 +43,22 @@ npm start
 
 3. Connect your GitHub repository
 
-4. Configure the service:
+4. Create a Postgres database in Render (**New > PostgreSQL**) and copy its **Internal Database URL**.
+
+5. Configure the web service:
    - **Name:** pokemon-favorites (or your preferred name)
    - **Runtime:** Node
    - **Build Command:** `npm install`
    - **Start Command:** `npm start`
+   - **Environment Variables:**
+     - `DATABASE_URL` = Render Postgres Internal Database URL
+     - `NODE_ENV` = `production`
 
-5. Click **Create Web Service**
+6. Click **Create Web Service**
 
-6. Wait for the build to complete. Your app will be live at `https://your-service-name.onrender.com`
+7. Wait for the build to complete. Your app will be live at `https://your-service-name.onrender.com`
+
+The server creates the required tables on startup.
 
 ### Updating Your App
 
@@ -60,3 +72,25 @@ npm start
    ```
 
 3. Render automatically detects the push and redeploys your app
+
+## Render MCP Server
+
+Manage your Render infrastructure directly from Claude Code using the [Render MCP Server](https://render.com/docs/mcp-server).
+
+### Setup
+
+1. Get your API key from [Render Dashboard > Account Settings > API Keys](https://dashboard.render.com/u/settings/api-keys)
+
+2. Add the Render MCP server to Claude Code:
+   ```bash
+   claude mcp add --transport http render https://mcp.render.com/mcp --header "Authorization: Bearer <YOUR_API_KEY>"
+   ```
+
+### What You Can Do
+
+Once configured, you can ask Claude Code to:
+- Create and manage web services, static sites, and databases
+- Monitor application logs and deployment status
+- Check service performance metrics
+- Query your Postgres databases
+- Troubleshoot issues with natural language

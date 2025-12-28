@@ -13,7 +13,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 // API Routes
 app.use('/api', apiRoutes);
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`Pokemon Favorites server running at http://localhost:${PORT}`);
+// Start server after ensuring database schema
+const startServer = async () => {
+    await db.init();
+    app.listen(PORT, () => {
+        console.log(`Pokemon Favorites server running at http://localhost:${PORT}`);
+    });
+};
+
+startServer().catch((error) => {
+    console.error('Failed to start server:', error);
+    process.exit(1);
 });
